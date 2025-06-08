@@ -1,0 +1,58 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+  PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+
+   DRIVER DETAILS
+{% endblock %}
+
+{% block table %}
+ <thead>
+   <tr>
+    
+    <th>d_id</th>
+    <th>d_full_name</th>
+    <th>d_email</th>
+    <th>d_passwd</th>
+    <th>d_otp</th>
+    <th>d_otp_used</th>
+    <th>d_created_at</th>
+    <th>d_login_at</th>
+    <th>d_login_status</th>
+    <th>d_birth_date</th>
+    <th>d_activity_status</th>
+    <th>driver_details_status</th>
+    <th>driver_bnk_status</th>
+    <th>d_address_pin</th>
+    <th>driver_approval_status</th>
+    <th colspan="2">Action</th>
+   </tr>
+  </thead>
+  {% for data in drivermaster %}
+   <tbody>
+     <tr>
+    
+      <td> {{data.d_id}}</td>
+      <td> {{data.d_full_name}}</td>
+      <td> {{data.d_email}}</td>
+      <td> {{data.d_passwd}}</td>
+      <td> {{data.d_otp}}</td>
+      <td> {{data.d_otp_used}}</td>
+      <td> {{data.d_created_at}}</td>
+      <td> {{data.d_login_at}}</td>
+      <td> {{data.d_login_status}}</td>
+      <td> {{data.d_birth_date}}</td>
+      <td> {{data.d_activity_status}}</td>
+      <td> {{data.driver_details_status}}</td>
+      <td> {{data.driver_bnk_status}}</td>
+      <td> {{data.d_address_pin}}</td>
+      <td><a href="/moversadmin/driver_vehicle_details/{{data.d_id}}" class="btn btn-primary">verify vehicle details</a></td>
+      <td><a href="/moversadmin/drivermaster_delete/{{data.d_id}}" class="btn btn-lg btn-danger">delete</a></td>
+     </tr>
+    </tbody>
+  {% endfor %}
+
+{% endblock %}

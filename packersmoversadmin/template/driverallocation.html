@@ -1,0 +1,43 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    UPDATE CATEGORY 
+{% endblock %}
+
+{% block table %}
+<div class="card-body">
+  <form method="post" action= "/moversadmin/driverallocation/{{bookings_details_id}}">
+
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label>Choose Drivers </label>
+         
+        <select class="form-control" name="d_id">
+          {% for data in driverdetals %}
+          <option value="{{data.d_id.d_id}}"> {{data.d_id.d_full_name}} height  :  {{data.driver_vehicle_id.vehicle_ch_height}} width   :{{data.driver_vehicle_id.vehicle_ch_width}}  length :  {{data.driver_vehicle_id.vehicle_ch_length}}   </option>
+          {% endfor %}
+        </select>
+      </div>
+     </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          Allocate
+        </button>
+      </div>
+    
+   </form>
+
+   </div>
+
+   
+
+
+
+
+{% endblock %}

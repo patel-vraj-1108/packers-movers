@@ -1,0 +1,63 @@
+{% extends "driver_header_footer_static.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+  REGISTERATION FORM
+{% endblock %}
+
+{% block table %}
+<div class="card-body ">
+    <form method="POST" action='/driver/driverRegisteration/'>
+      {% csrf_token %} 
+       <div class="row">
+        <div class="form-group col-6">
+          <label for="frist_name">Full Name</label>
+          <input id="frist_name" type="text" class="form-control" name="d_full_name" autofocus>
+        </div>
+      </div>
+      <div class="form-group col-6 " >
+        <label for="email">Email</label>
+        <input id="email" type="email" class="form-control" name="d_email">
+        <div class="invalid-feedback">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="password" class="d-block">Password</label>
+          <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
+            name="d_passwd">
+          <div id="pwindicator" class="pwindicator">
+            <div class="bar"></div>
+            <div class="label"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-6">
+        <label for="password" class="d-block">Birth date</label>
+        <input id="birtdate" type="date" class="form-control pwstrength" data-indicator="pwindicator"
+          name="d_birth_date">
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="d_address_pin">Address pin</label>
+              <input id="d_address_pin" type="text" class="form-control" name="d_address_pin" autofocus>
+            </div>
+          </div>
+                  
+      </div>
+      <div class="form-group col-6">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          Register
+        </button>
+      </div>
+    </div>
+      
+      
+    </form>
+  </div>
+
+
+
+{% endblock %}

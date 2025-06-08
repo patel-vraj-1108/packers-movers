@@ -1,0 +1,73 @@
+{% extends "driver_header_footer.html" %}
+
+{% block tableheading %}
+  booking details
+{% endblock %}
+{% block addbutton %}
+   {% for data in driver_filter_activity %}
+      {% if data.d_activity_status == 0 %}
+        <a href="/driver/update_online/" class="btn btn-primary">Get online</a>
+      {% else %}
+        <a href="/driver/update_offline/" class="btn btn-danger">offline</a>
+      {% endif %}
+    {% endfor %}
+
+{% endblock %}
+
+
+{% block table %}
+ <thead>
+   <tr>
+    <th>booking_id</th>
+    <th>u_id</th>
+    <th>pac kage_id</th>
+    <th>from_address</th>
+    <th>from_pincode</th>
+    <th>to_address</th>
+    <th>to_pincode</th>
+    <th>vehicle_selection</th>
+    <th>driver_all_id</th>
+    <th>driver_all_STATUS</th>
+    <th>payment_status</th>
+    <th>total_pay_amount</th>
+    <th>driver_amount</th>
+    <th>portal_profit_amount</th>
+    <th>total_no_km_travel</th>
+    <th>booking_date</th>
+    <th>booking_status</th>
+    <th>completion_otp</th>
+    <th>Action</th>
+    <th>Action</th>
+   </tr>
+ </thead>
+          {% for data in driver_filter_activity %}
+            {% if data.d_activity_status == 0 %}
+                    <p style="color:red;"> Get online to get order</p>
+            {% else %}
+                {% for data in driver_book %}
+                <tbody>
+                  <tr>
+                  
+                  <td>{{data.booking_id}}</td>
+                  <td>{{data.u_id.u_full_name}}</td>
+                  <td>{{data.from_address}}</td>
+                  <td>{{data.from_pincode}}</td>
+                  <td>{{data.to_address}}</td>
+                  <td>{{data.to_pincode}}</td>
+                  <td>{{data.driver_amount}}</td>
+                  <td>{{data.total_no_km_travel}}</td>
+                  
+                  </tr>
+                </tbody>
+
+                {% endfor %}
+            {% endif %}
+          {% endfor %}
+
+
+
+  
+
+
+    
+{% endblock %}

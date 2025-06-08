@@ -1,0 +1,55 @@
+{% extends "driver_header_footer_static.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block table %}
+ <div class="card-body">
+    <form method="POST" action='/driver/driverbankdetails/' enctype="multipart/form-data">
+      {% csrf_token %} 
+       <div class="row">
+        <div class="form-group col-12">
+          <label for="d_accnt_no">Enter Account Number</label>
+          <input id="d_accnt_no" type="text" class="form-control" name="d_accnt_no" autofocus>
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="d_acc_ifs">Enter IFSC</label>
+        <input id="d_acc_ifs" type="text" class="form-control" name="d_acc_ifs">
+        <div class="invalid-feedback">
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="d_branch_name">Enter Branch Name</label>
+        <input id="d_branch_name" type="text" class="form-control" name="d_branch_name">
+        <div class="invalid-feedback">
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="d_bank_name">Driver Bank Name</label>
+        <input id="d_bank_name" type="text" class="form-control" name="d_bank_name">
+        <div class="invalid-feedback">
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="d_image_doc">Upload Passbook</label>
+        <input id="d_image_doc" type="file" class="form-control" name="d_image_doc">
+        <div class="invalid-feedback">
+        </div>
+       </div>
+      
+       </div>
+    
+      
+       <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          Add Details
+        </button>
+       </div>
+    </form>
+  </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "header_footer.html" %}
+
+{% block tableheading %}
+  booking details
+{% endblock %}
+
+
+{% block table %}
+ <thead>
+   <tr>
+    <th>booking_id</th>
+    <th>u_id</th>
+    <th>package_id</th>
+    <th>from_address</th>
+    <th>from_pincode</th>
+    <th>to_address</th>
+    <th>to_pincode</th>
+    <th>vehicle_selection</th>
+    <th>driver_all_id</th>
+    <th>driver_all_STATUS</th>
+    <th>payment_status</th>
+    <th>total_pay_amount</th>
+    <th>driver_amount</th>
+    <th>portal_profit_amount</th>
+    <th>total_no_km_travel</th>
+    <th>booking_date</th>
+    <th>booking_status</th>
+    <th>completion_otp</th>
+    <th>Action</th>
+    <th>Action</th>
+   </tr>
+ </thead>
+
+  {% for data in bookingdetails %}
+   <tbody>
+    <tr>
+    
+     <td>{{data.booking_id}}</td>
+     <td>{{data.u_id}}</td>
+     <td>{{data.package_id}}</td>
+     <td>{{data.from_address}}</td>
+     <td>{{data.from_pincode}}</td>
+     <td>{{data.to_address}}</td>
+     <td>{{data.to_pincode}}</td>
+     <td>{{data.vehicle_selection}}</td>
+     <td>{{data.driver_all_id.d_full_name}}</td>
+     <td><a href="/moversadmin/driverallocation/{{data.booking_id}}" class="btn btn-lg btn-primary">driver allocate</a></td>
+     <td>{{data.driver_all_STATUS}}</td>
+     <td>{{data.payment_status}}</td>
+     <td>{{data.total_pay_amount}}</td>
+     <td>{{data.driver_amount}}</td>
+     <td>{{data.portal_profit_amount}}</td>
+     <td>{{data.total_no_km_travel}}</td>
+     <td>{{data.booking_date}}</td>
+     <td>{{data.booking_status}}</td>
+     <td>{{data.completion_otp}}</td>
+     <td><a href="" class="btn btn-lg btn-danger">update</a></td>
+     <td><a href="/moversadmin/bookingdetails_delete/{{data.booking_id}}" class="btn btn-lg btn-danger">delete</a></td>
+    
+    </tr>
+   </tbody>
+
+  {% endfor %}
+
+
+  
+
+
+    
+{% endblock %}

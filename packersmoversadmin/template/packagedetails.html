@@ -1,0 +1,49 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    PACKAGE DETAILS
+
+{% endblock %}
+
+
+{% block addbutton %}
+  <a href="/moversadmin/add_packages/" class="btn btn-primary">Add new packages</a>
+
+{% endblock %}
+
+
+{% block table %}
+ <thead>
+    <tr>
+     <th>pack_id</th>
+     <th>pack_name</th>
+     <th>pack_price</th>
+     <th>pack_descr</th>
+     <th>cat_id</th>
+     <th>Action</th>
+     <th>Action</th>
+   </tr>
+ </thead>
+ 
+   <tbody>
+    {% for data in package_details %} 
+     <tr>
+    
+      <td> {{data.pack_id}}</td>
+      <td> {{data.pack_name}}</td>
+      <td> {{data.pack_price}}</td>
+      <td> {{data.pack_descr}}</td>
+      <td> {{data.cat_id}}</td>
+      <td><a href="/moversadmin/update_packages/{{data.pack_id}}" class="btn btn-primary">update</a></td>
+      <td><a href="/moversadmin/package_details_delete/{{data.pack_id}}" class="btn btn-lg btn-danger">delete</a></td>
+
+     </tr>
+    
+    {% endfor %}
+   </tbody>
+ 
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    VEHICLE AVAILABLE
+{% endblock %}
+{% block addbutton %}
+  <a href="/moversadmin/add_vehicle/" class="btn btn-primary">Add new vehicle </a>
+
+{% endblock %}
+
+
+{% block table %}
+ <thead>
+  <tr>
+    <th>vehicle_ch_id</th>
+    <th>vehicle_ch_name</th>
+    <th>vehicle_ch_height</th>
+    <th>vehicle_ch_width</th>
+    <th>vehicle_ch_length</th>
+    <th>vehicle_ch_km_price</th>
+    <th>vehicle_ch_capacity</th>
+    <th>vehicle_image</th>
+    <th>Action</th>
+    <th>Action</th>
+  </tr>
+ </thead>
+  {% for data in vehicle_available %}
+  
+    <tbody>
+      <tr>
+    
+        <td> {{data.vehicle_ch_id}}</td>
+        <td> {{data.vehicle_ch_name}}</td>
+        <td> {{data.vehicle_ch_height}}</td>
+        <td> {{data.vehicle_ch_width}}</td>
+        <td> {{data.vehicle_ch_length}}</td>
+        <td> {{data.vehicle_ch_km_price}}</td>
+        <td> {{data.vehicle_ch_capacity}}</td>
+        <td><img src="{{data.vehicle_image.url}}" style="height:300px; width:300px"/></td>
+        <td><a href="#" class="btn btn-primary">update</a></td>
+        <td><a href="/moversadmin/vehicle_available_delete/{{data.vehicle_ch_id}}" class="btn btn-lg btn-danger">delete</a></td>
+
+      </tr>
+    </tbody>
+  {% endfor %}
+
+{% endblock %}

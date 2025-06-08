@@ -1,0 +1,83 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    UPDATE CATEGORY 
+{% endblock %}
+
+{% block table %}
+<div class="card-body">
+  <form method="post" action= "/moversadmin/update_packages/{{id}} ">
+
+      {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="c_name">PACKAGE NAME</label>
+          <input id="c_name" type="text" class="form-control" placeholder="{{cat.pack_name}}" name="pack_name" autofocus>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pack_price">PACKAGE PRICE</label>
+        <input id="pack_price" type="text"   class="form-control" placeholder="{{cat.pack_price}}" name="pack_price">
+        <div class="invalid-feedback">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pack_descr">PACKAGE DISCRIPTION</label>
+        <input id="pack_descr" type="text"   class="form-control" placeholder="{{cat.pack_descr}}" name="pack_descr">
+        <div class="invalid-feedback">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>category</label>
+         
+        <select class="form-control" name="cat_id">
+          {% for cat_g in fetch_category%}
+          <option value="{{cat_g.c_id}}"> {{cat_g.c_name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+     </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          UPDATE
+        </button>
+      </div>
+    
+  </form>
+
+  </div>
+  <thead>
+    <tr>  
+      <th>package name</th>
+      <th>package price</th>
+      <th>package discription</th>
+      <th>package category</th>
+
+      
+
+
+    </tr>
+   </thead>
+   {% for data in fetch_packages %}
+  
+    <tbody>
+     <tr>
+       <td> {{data.pack_name}}</td>
+       <td> {{data.pack_price}}</td>
+       <td> {{data.pack_descr}}</td>  
+       <td> {{data.cat_id}}</td>  
+
+     </tr>
+   
+    </tbody>
+   {% endfor %}
+
+
+
+
+{% endblock %}

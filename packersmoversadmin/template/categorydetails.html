@@ -1,0 +1,47 @@
+
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+  PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+
+  CATEGORY DETAILS
+
+{% endblock %}
+{% block addbutton %}
+  <a href="/moversadmin/add_categories/" class="btn btn-primary">Add categories</a>
+
+{% endblock %}
+{% block table %}
+ <thead>
+  <tr>
+    
+    <th>category id</th>
+    <th>category name</th>
+    <th>category description</th>
+    <th>Action</th>
+    <th>Action</th>
+    
+
+  </tr>
+ </thead>
+ {% for data in categorydetails %}
+
+  <tbody>
+  
+   <tr>
+    
+     <td> {{data.c_id}}</td>
+     <td> {{data.c_name}}</td>
+     <td> {{data.c_descr}}</td>
+     <td><a href="/moversadmin/update_categories/{{data.c_id}}" class="btn btn-primary">update</a></td>
+     <td><a href="/moversadmin/categorydetails_delete/{{data.c_id}}" class="btn btn-lg btn-danger">delete</a></td>
+
+   </tr>
+ 
+  </tbody>
+ {% endfor %}
+
+{% endblock %}

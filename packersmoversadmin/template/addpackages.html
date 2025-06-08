@@ -1,0 +1,25 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    ADD NEW PACKAGES
+{% endblock %}
+
+{% block table %}
+  <form class="form-inline mr-auto" method="POST" >
+    {{message}}
+    <div class="search-element">
+       {% csrf_token %}
+         {{form.as_p}}
+         
+      </div>
+        <button class="btn btn-primary mr-1" type="submit">Submit</button>
+    </div>
+  </form>
+
+
+
+{% endblock %}

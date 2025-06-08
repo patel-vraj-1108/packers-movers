@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ 
+  {{ map.header.render|safe }}
+</head>
+<body>
+
+  <div style="width: 80%; height: 600px; margin: 20px auto;">
+    {{ map.html.render|safe }}
+   </div>
+   <script>
+      {{ map.script.render|safe }}
+    </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var paraGraph = document.getElementById("paraGraph");
+      var user_loc = navigator.geolocation;
+
+      function geolocator() {
+        if (user_loc) {
+          user_loc.getCurrentPosition(success, error);
+        } else {
+          paraGraph.innerHTML = "Your browser doesn't support the Geolocation API.";
+        }
+      }
+
+      function success(position) {
+        // var lat = position.coords.latitude;
+        // var long = position.coords.longitude;
+        // console.log(lat);
+	      // console.log(long);
+        $.ajax({
+        url: '{% url "driver_location" %}',  // Django URL
+        method: 'POST',
+        data: {
+          'latitude': position.coords.latitude,
+          'longitude':  position.coords.longitude,    
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),     
+        },
+       })
+       
+      }
+
+      function error(err) {
+        paraGraph.innerHTML = "Error getting location: " + err.message;
+      }
+
+      // Call geolocator on page load
+      geolocator();
+    });
+  </script>
+  
+</body>
+</html>
+     <!-- Include jQuery in your template -->

@@ -1,0 +1,51 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+  PACKERS and MOVERS
+{% endblock %}
+
+{% block tableheading %}
+
+   DRIVER BANK DETAILS
+{% endblock %}
+
+{% block table %}
+ <thead>
+  <tr>
+    
+     <th>d acc details id</th>
+     <th>d_id</th>
+     <th>d accnt no</th>
+     <th>d acc ifs</th>
+     <th>d branch name</th>
+     <th>d bank name</th>
+     <th>check status</th>
+     <th> passbook </th>
+     <th> check bank doc</th>
+     <th>Action</th>
+
+
+  </tr>
+ </thead>
+ {% for data in driver_bnk_account %}
+
+  <tbody>
+  
+    <tr>
+    
+     <td> {{data.d_acc_details_id}}</td>
+     <td> {{data.d_id.d_id}}</td>
+     <td> {{data.d_accnt_no}}</td>
+     <td> {{data.d_acc_ifs}}</td>
+     <td> {{data.d_branch_name}}</td>
+     <td> {{data.d_bank_name}}</td>
+     <td> {{data.d_bank_accept}}</td>
+     <td> {{data.d_image_doc}}</td>
+     <td><a href="/moversadmin/update_driver_verification/{{data.d_id.d_id}}" class="btn btn-primary">Authorized</a></td>
+     <td><a href="/moversadmin/driver_bnk_account_delete/{{data.d_acc_details_id}}" class="btn btn-lg btn-danger">delete</a></td>
+   </tr>
+ 
+  </tbody>
+ {% endfor %}
+
+{% endblock %}

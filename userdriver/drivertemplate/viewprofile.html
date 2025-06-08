@@ -1,0 +1,44 @@
+{% extends "driver_header_footer.html" %}
+
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    MY PROFILE
+{% endblock %}
+
+{% block table %}
+ <tr>
+    {% for data in driver_register %}
+      <tr>
+        <td>Driver Name</td>
+        <td>{{data.d_full_name}}</td>
+      </tr>
+      <tr>
+        <td>Driver Email</td>
+        <td>{{data.d_email}}</td>
+      </tr>
+    {% endfor %}
+  </tr>
+  <tr>
+  {% for data in driver_vehicle %}
+    <tr>
+      <td>Vehicle Number</td>
+      <td>{{data.d_vehicle_no}}</td>
+    </tr>
+    <tr>
+      <td>Vehicle Type</td>
+      <td>{{data.driver_vehicle_id.vehicle_ch_name}}</td>
+    </tr>
+    <tr>
+     <td>Vehicle size</td>
+     <td>{{data.driver_vehicle_id.vehicle_ch_height}}*{{data.driver_vehicle_id.vehicle_ch_width}} * {{data.driver_vehicle_id.vehicle_ch_length}}</td>
+    </tr>
+  {% endfor %}
+
+ </tr>
+   
+
+{% endblock %}

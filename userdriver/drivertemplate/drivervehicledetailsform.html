@@ -1,0 +1,56 @@
+
+<!--this is used for title -->
+{% extends "driver_header_footer_static.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block table %}
+ <div class="card-body">
+    <form method="POST" action='/driver/driverdetails/' enctype="multipart/form-data">
+      {% csrf_token %} 
+       
+       
+       <div class="form-group">
+        <label for="d_vehicle_no">Vehicle Number</label>
+        <input id="d_vehicle_no" type="text" class="form-control" name="d_vehicle_no">
+        <div class="invalid-feedback">
+        </div>
+       </div>
+       </div>
+       <div class="form-group">
+        <label for="driver_vehicle_name"> choose Vehicle type<label>
+        <select id="driver_vehicle_name" class="form-control form-control-sm" name="driver_vehicle_name">
+           {% for data in vehiclechoice %} 
+               <option value="{{data.vehicle_ch_id}}"><tr><b>{{data.vehicle_ch_name}}</b></tr> <tr><td>height :</td><td>{{data.vehicle_ch_height}}</td> <td>width:</td><td>{{data.vehicle_ch_width}}</td> <td>length :</td> <td>{{data.vehicle_ch_length}}</td> <td>capacity :</td> <td>{{data.vehicle_ch_capacity}}</td> </tr> </option>
+           {% endfor %}
+        </select>
+      </div>
+       <div class="form-group">
+        <label for="d_licence">Driver Licence</label>
+        <input id="d_licence" type="file" class="form-control" name="d_licence">
+        <div class="invalid-feedback">
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="d_vehicle_r_c">Driver R C</label>
+        <input id="d_vehicle_r_c" type="file" class="form-control" name="d_vehicle_r_c">
+        <div class="invalid-feedback">
+        </div>
+       </div>
+    
+       </div>
+       
+      
+       <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          Add Details
+        </button>
+       </div>
+    </form>
+  </div>
+
+
+
+{% endblock %}

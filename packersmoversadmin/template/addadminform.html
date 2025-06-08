@@ -1,0 +1,58 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    ADD NEW PACKAGES
+{% endblock %}
+
+{% block table %}
+<div class="card-body">
+    <form method="POST" action='{% url "addadmin" %}'>
+      {% csrf_token %} 
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="frist_name">Full Name</label>
+          <input id="frist_name" type="text" class="form-control" name="u_full_name" autofocus>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" class="form-control" name="u_email">
+        <div class="invalid-feedback">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="password" class="d-block">Password</label>
+          <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
+            name="u_passwd">
+          <div id="pwindicator" class="pwindicator">
+            <div class="bar"></div>
+            <div class="label"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-6">
+        <label for="password" class="d-block">Birth date</label>
+        <input id="birtdate" type="date" class="form-control pwstrength" data-indicator="pwindicator"
+          name="u_birth_date">
+          <input type="hidden" id="custId" name="u_is_admin" value="0">
+
+        
+      </div>
+    </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+
+
+
+{% endblock %}

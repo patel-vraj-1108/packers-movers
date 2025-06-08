@@ -1,0 +1,37 @@
+{% extends 'headerfooter.html' %}
+{% block content %}
+ <div class="support-area support-bg pt-110 pb-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-10">
+                <div class="s-section-title text-center mb-60">
+                    <h2>LOGIN</h2>
+           
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="support-form text-center">
+                    <form action="/client/login/" method="post">
+                      {% csrf_token %}
+                        <div class="row">
+                           
+                            <div class="col-md-6">
+                                <input type="email" placeholder="Email id *" name="u_email">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" placeholder="password *" name="u_passwd">
+                            </div>
+                           
+                        </div>
+                        
+                        <input type="submit" value="SIGN IN" class="btn red-btn">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+{% endblock %} 

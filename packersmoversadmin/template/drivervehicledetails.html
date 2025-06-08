@@ -1,0 +1,53 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+  THIS IS FOR TEST
+{% endblock %}
+
+{% block tableheading %}
+  DRIVER VEHICLE DETAILS
+{% endblock %}
+
+{% block table %}
+  <thead>
+    <tr>
+     <th>d_details_id</th>
+     <th>d_id</th>
+     <th>d_vehicle_no</th>
+     <th>d_vehicle_height</th>
+     <th>d_vehicle_width</th>
+     <th>d_vehicle_length</th>
+     <th>d_capacity</th>
+     <th>d_licence_no</th>
+     <th>d_licence</th>
+     <th>d_vehicle_r_c</th>
+     <th>d_vehicle_accept</th>
+     <th colspan="2">Action</th>
+     <th></th>
+
+    </tr>
+  </thead>
+  {% for data in driver_vehicle_details %}
+
+   <tbody>
+     <tr>
+    
+      <td> {{data.d_details_id}}</td>
+      <td> {{data.d_id.d_id}}</td>
+      <!-- <td> {{data.d_vehicle_no}}</td>
+      <td> {{data.d_vehicle_height}}</td>
+      <td> {{data.d_vehicle_width}}</td>
+      <td> {{data.d_vehicle_length}}</td>
+      <td> {{data.d_capacity}}</td> -->
+      <td> {{data.d_licence_no}}</td>
+      <td> {{data.d_licence}}</td>
+      <td> {{data.d_vehicle_r_c}}</td>
+      <td> {{data.d_vehicle_accept}}</td>
+      <td> {{data.driver_vehicle_name}}</td>
+      <td><a href="/moversadmin/driver_bnk_account/{{data.d_id.d_id}}" class="btn btn-primary">verify bank details</a></td>
+      <td><a href="/moversadmin/driver_vehicle_details_delete/{{data.d_details_id}}" class="btn btn-lg btn-danger">delete</a></td>
+     </tr>
+   </tbody>
+
+  {% endfor %}
+{% endblock %}

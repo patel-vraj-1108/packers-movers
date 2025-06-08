@@ -1,0 +1,63 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    UPDATE CATEGORY 
+{% endblock %}
+
+{% block table %}
+<div class="card-body">
+  <form method="post" action= "/moversadmin/update_categories/{{id}} ">
+
+   {% for cat in fetch_category %}
+      {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="pack_name">PACKAGE NAME</label>
+          <input id="pack_name" type="text" class="form-control" placeholder="{{cat.pack_name}}" name="pack_name" autofocus>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="c_descr">Email</label>
+        <input id="c_descr" type="text"   class="form-control" placeholder="{{cat.c_descr}}" name="c_descr">
+        <div class="invalid-feedback">
+        </div>
+      </div>
+      
+    </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          UPDATE
+        </button>
+      </div>
+    
+   {% endfor %}
+  </form>
+
+  </div>
+  <thead>
+    <tr>  
+      <th>category name</th>
+      <th>category description</th>
+
+    </tr>
+   </thead>
+   {% for data in fetch_category %}
+  
+    <tbody>
+     <tr>
+       <td> {{data.c_name}}</td>
+       <td> {{data.c_descr}}</td>  
+     </tr>
+   
+    </tbody>
+   {% endfor %}
+
+
+
+
+{% endblock %}

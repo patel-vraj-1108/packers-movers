@@ -1,0 +1,57 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+  THIS IS FOR TEST
+{% endblock %}
+
+{% block tableheading %}
+
+ PACKERS AND MOVERS
+{% endblock %}
+{% block addbutton %}
+  <a href="/moversadmin/addadmin/" class="btn btn-primary">Add new Admin</a>
+
+{% endblock %}
+{% block table %}
+   <thead>
+     <tr>
+      <th>u_id</th>
+      <th>u_full_name</th>
+      <th>u_email</th>
+      <th>u_passwd</th>
+      <th>u_otp</th>
+      <th>u_otp_used</th>
+      <th>u_created_at</th>
+      <th>u_login_at</th>
+      <th>u_login_status</th>
+      <th>u_birth_date</th>
+      <th>u_is_admin</th>
+      <th>Action</th>
+      <th>Action</th>
+
+
+
+     </tr>
+   </thead>
+  {% for data in userdetails%}
+   <tbody>
+      <tr>
+    
+        <td> {{data.u_id}}</td>
+        <td> {{data.u_full_name}}</td>
+        <td> {{data.u_email}}</td>
+        <td> {{data.u_passwd}}</td>
+        <td> {{data.u_otp}}</td>
+        <td> {{data.u_otp_used}}</td>
+        <td> {{data.u_created_at}}</td>
+        <td> {{data.u_login_at}}</td>
+        <td> {{data.u_login_status}}</td>
+        <td> {{data.u_birth_date}}</td>
+        <td> {{data.u_is_admin}}</td>
+        <td><a href="#" class="btn btn-primary">update</a></td>
+        <td><a href="/moversadmin/userdata_delete/{{data.u_id}}" class="btn btn-lg btn-danger">delete</a></td>
+
+      </tr>
+   </tbody>
+  {% endfor %}
+{% endblock %}

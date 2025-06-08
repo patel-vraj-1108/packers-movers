@@ -1,0 +1,68 @@
+{% extends 'headerfooter.html' %}
+
+{% block content %}
+        <form method="post" action="/Client_clothes/placeorder/{{total}}">
+            {% csrf_token %}
+            <div class="payment_item">
+                <div class="radion_btn">
+                    <input type="radio" value="2" id="pay" name="payment_status"/>
+                    <label for="pay">Online</label>
+                <div class="check"></div>
+                </div>
+                <div class="payment_item ">
+                    <div class="radion_btn">
+                        <input type="radio" value="1" id="cod" name="payment_status"/>
+                        <label for="cod">Cash on Delivery </label>
+                        <div class="check"></div>
+                    </div>
+
+                    <div id="order1">
+                        <button class="btn_3" title="Place Order" type="submit">
+                         Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        //for show buttons
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script type="text/javascript">
+        $(function() {
+        $       ("input[name='payment_status']").click(function() {
+        if ($("#pay").is(":checked")) {
+        $("#order").show();
+        $("#order1").hide();
+        }
+        else {
+        $("#order1").show();
+        $("#order").hide();
+        }
+        });
+        });
+        </script>
+
+
+        //For online Payment
+        <div id="order" style="display:none">
+            <form class="text-center border border-light p-5" action="/Client_clothes/OrderSucess/"
+                method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="name" id="name" required class="form-control mb-4"
+               placeholder="Name">
+        <!-- RAZORPAY INTEGRATION HERE -->
+                <script src="https://checkout.razorpay.com/v1/checkout.js"
+                        data-key="rzp_test_RQ4cj5zy35CXCh"
+                        data-amount="{{total|mul:100}}"
+                        data-currency="INR"
+                        data-order_id="{{payment.id}}"
+                        data-buttontext="Pay with Razorpay"
+                        data-name="Clothing Store"
+                        data-url_root="https://eneqd3r9zrjok.x.pipedream.net/"
+                        data-description="Online Clothing Store"
+                        data-image="{% static 'pvr_img/Pvr_logo.png' %}"
+                        data-theme.color="#F37254">
+                </script>
+            </form>
+        </div>
+{% endblock %}

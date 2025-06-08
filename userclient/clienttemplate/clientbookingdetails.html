@@ -1,0 +1,141 @@
+{% extends 'headerfooter.html' %}
+
+{% block content %}
+ <div class="support-area support-bg pt-110 pb-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-10">
+                <div class="s-section-title text-center mb-60">
+                    <h2>Booking Details</h2>
+           
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="support-form text-center">
+                    <form action="/client/booking/{{id}}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <select class="col-md-12" id="vehicle_selection" name="vehicle_required_id">
+                                {% for data in choose_vehicle %} 
+                                  <option value="{{data.vehicle_ch_id}}"><tr><b>{{data.vehicle_ch_name}}</b></tr> <tr><td>height :</td><td>{{data.vehicle_ch_height}}</td> <td>width:</td><td>{{data.vehicle_ch_width}}</td> <td>length :</td> <td>{{data.vehicle_ch_length}}</td> <td>capacity :</td> <td>{{data.vehicle_ch_capacity}}</td> </tr> </option>
+                                {% endfor %}
+                                 
+                              </select>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" placeholder="From Address *" name="from_address" id="fromaddress" required>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" placeholder="From pincode *" name="from_pincode" required>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" placeholder="From Contact" name="from_contact">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" placeholder="Destination Address *" name="to_address" id="toaddress" required>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" placeholder="Destination pincode *" name="to_pincode" required>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" placeholder="Destination Contact" name="to_contact">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" id="fetch_trip_km">
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"><b>price per kilometer</b></div>
+                            <div class="col-md-10" id="price_per_km">
+
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="row">
+                          <input type="submit" value="check out" class="btn red-btn col-md-12">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  
+  
+{% endblock %}
+   
+
+{% block jsscript %}
+  <script>
+    $(document).ready(function() {
+      $('#vehicle_selection').on('click', function() {
+        var vehicle_c_id = $('#vehicle_selection').val();
+
+        $.ajax({
+            url: '{% url "fetchkilometer" %}', // Ensure this URL is correct and matches your Django URL pattern
+            method: 'POST',
+            data: {
+                'vehicle_choice_id': vehicle_c_id,
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(response) {
+                // Clear previous content
+                $("#price_per_km").empty();
+                for (const key in response.fetch_km_j) {
+                    var data ="<input type='number' name = 'fetchkm' value='"+response.fetch_km_j[key].vehicle_ch_km_price+"'   readonly >";
+                    
+                    $("#price_per_km").append(data);
+                }
+               
+            }, // Closing for success function
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error); // Optional: Handle errors
+            } // Closing for error function
+        }); // Closing for ajax call
+    }); // Closing for click event handler
+   });
+     
+
+  </script>
+
+
+<script>
+    $(document).ready(function(){
+      $('#fromaddress,#toaddress').on('input',function(){
+        var from =$('#fromaddress').val();
+        var to = $('#toaddress').val();
+        $.ajax({
+           url : '{% url "test_distances" %}',
+           method : 'POST',
+           data : {
+            'from_address': from,
+            'to_address':to,
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+
+           },
+           success: function(response) {
+                // Clear previous content
+                $("#fetch_trip_km").empty();
+                
+                var data ="<input type='number' name = 'total_no_km_travel' value='"+response.distance_km+"'   readonly >";    
+                $("#fetch_trip_km").append(data);
+               
+               
+            },
+        });
+      });
+    });
+  </script>
+  
+{% endblock %}

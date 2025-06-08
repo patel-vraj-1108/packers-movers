@@ -1,0 +1,23 @@
+{% extends "header_footer.html" %}
+<!--this is used for title -->
+{% block  title %}
+    PACKERS AND MOVERS
+{% endblock %}
+
+{% block tableheading %}
+    ADD NEW VIEHCLE
+{% endblock %}
+
+{% block table %}
+  <form class="form-inline mr-auto" method="post" enctype="multipart/form-data">
+ 
+    <div class="search-element">
+       {% csrf_token %}
+       {{form.as_p}}
+        <button class="btn btn-primary mr-1" type="submit">Submit</button>
+    </div>
+  </form>
+
+
+
+{% endblock %}
